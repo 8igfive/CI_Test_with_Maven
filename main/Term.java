@@ -21,9 +21,9 @@ public class Term implements Comparable<Term> {
                 switch (factor.getType()) {
                     case X:
                         flag = true;
-                        PowerFactor pow0 = (PowerFactor) factor;
+                        PowerFactor pow0 = new PowerFactor();
                         PowerFactor pow1 = (PowerFactor) factor1;
-                        pow0.setExpo(pow1.getExpo().add(pow0.getExpo()));
+                        pow0.setExpo(pow1.getExpo().add(factor.getExpo()));
                         factors.remove(pow1);
                         if (!pow0.getExpo().equals(BigInteger.ZERO)) {
                             factors.add(pow0);
@@ -31,11 +31,13 @@ public class Term implements Comparable<Term> {
                         break;
                     case SIN:
                     case COS:
-                        TriFactor tri0 = (TriFactor) factor;
+                        TriFactor tri0 = new TriFactor();
+                        tri0.setSubFactor(((TriFactor) factor).getSubFactor());
+                        tri0.setType(factor.getType());
                         TriFactor tri1 = (TriFactor) factor1;
                         if (tri0.getSubFactor().equals(tri1.getSubFactor())) {
                             flag = true;
-                            tri0.setExpo(tri0.getExpo().add(tri1.getExpo()));
+                            tri0.setExpo(factor.getExpo().add(tri1.getExpo()));
                             factors.remove(tri1);
                             if (!tri0.getExpo().equals(BigInteger.ZERO)) {
                                 factors.add(tri0);
@@ -43,11 +45,12 @@ public class Term implements Comparable<Term> {
                         }
                         break;
                     case EXPR:
-                        ExprFactor expr0 = (ExprFactor) factor;
+                        ExprFactor expr0 = new ExprFactor();
+                        expr0.setTerms(((ExprFactor) factor).getTerms());
                         ExprFactor expr1 = (ExprFactor) factor1;
                         if (expr0.getTerms().equals(expr1.getTerms())) {
                             flag = true;
-                            expr0.setExpo(expr0.getExpo().add(expr1.getExpo()));
+                            expr0.setExpo(factor.getExpo().add(expr1.getExpo()));
                             factors.remove(expr1);
                             if (!expr0.getExpo().equals(BigInteger.ZERO)) {
                                 factors.add(expr0);
@@ -104,7 +107,6 @@ public class Term implements Comparable<Term> {
     }
 
     public ExprFactor derive() {
-        //TODO
         ExprFactor derivation = new ExprFactor();
         for (Factor factor : this.factors) {
             Term term = new Term();
