@@ -43,6 +43,7 @@ public class ExprFactor implements Factor {
                     for (Term termTemp : exprFactor.getTerms()) {
                         this.addTerm(termTemp);
                     }
+                    return;
                 }
             }
         }

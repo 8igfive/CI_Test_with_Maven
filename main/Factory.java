@@ -54,7 +54,7 @@ public class Factory {
 
     public static Factor parseFunction(String expression) {       //匹配失败放回null
         if (expression.indexOf('{') != -1 || expression.indexOf('}') != -1) {
-            System.out.println("0");        //TODO
+            //System.out.println("0");        //TODO
             return null;
         }
         String exprModified = expression.replaceAll("\\(", "{");
