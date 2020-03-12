@@ -91,6 +91,10 @@ public class Term implements Comparable<Term> {
         return this.factors;
     }
 
+    public void setFactors(Set<Factor> factors) {
+        this.factors = factors;
+    }
+
     public BigInteger getCoefficient() {
         return this.coefficient;
     }

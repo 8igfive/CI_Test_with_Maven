@@ -50,10 +50,12 @@ public class ExprFactor implements Factor {
         for (Term term1 : terms) {
             if (term1.getFactors().equals(term.getFactors())) {
                 flag = true;
-                term.setCoefficient(term.getCoefficient().add(term1.getCoefficient()));
+                Term newTerm = new Term();
+                newTerm.setFactors(term.getFactors());
+                newTerm.setCoefficient(term.getCoefficient().add(term1.getCoefficient()));
                 terms.remove(term1);
-                if (!term.getCoefficient().equals(BigInteger.ZERO)) {
-                    terms.add(term);
+                if (!newTerm.getCoefficient().equals(BigInteger.ZERO)) {
+                    terms.add(newTerm);
                 }
                 break;
             }
