@@ -54,7 +54,6 @@ public class Factory {
 
     public static Factor parseFunction(String expression) {       //匹配失败放回null
         if (expression.indexOf('{') != -1 || expression.indexOf('}') != -1) {
-            //System.out.println("0");        //TODO
             return null;
         }
         String exprModified = expression.replaceAll("\\(", "{");
@@ -77,7 +76,6 @@ public class Factory {
             Factor factor;
             factor = parseFactor(matcher);
             if (factor == null) {
-                //System.out.println("1");        //TODO
                 return null;
             }
             if (factor.getClass() == ConstantFactor.class) {
@@ -89,17 +87,15 @@ public class Factory {
             if (subTerm != null) {
                 matcher = pattern.matcher(subTerm);
             } else if (matcher.group("continue") != null) {
-                //System.out.println("2");        //TODO
                 return null;
             } else {
                 break;
             }
         }
         if (!matcher.matches()) {
-            //System.out.println("3");            //TODO
             return null;
         }
-        term.setCoefficient(coefficient);
+        term.setCoefficient(term.getCoefficient().multiply(coefficient));
         return term;
     }
 
@@ -117,7 +113,6 @@ public class Factory {
                 }
                 expo = new BigInteger(intForExpo);
                 if (expo.abs().compareTo(new BigInteger("50")) == 1) {
-                    //System.out.println("4");            //TODO
                     return null;
                 }
             }
@@ -129,7 +124,6 @@ public class Factory {
             } else {
                 TriFactor triFactor = parseTriFactor(matcher);
                 if (triFactor == null) {
-                    //System.out.println("5");            //TODO
                     return null;
                 }
                 triFactor.setExpo(expo);
@@ -149,12 +143,10 @@ public class Factory {
                 if (factor0 != null) {
                     Factor exprFactor = parseExprFactor(factor0);
                     if (exprFactor == null) {
-                        //System.out.println("6");            //TODO
                         return null;
                     }
                     factor = exprFactor;
                 } else {
-                    //System.out.println("7");            //TODO
                     return null;
                 }
             }
@@ -179,12 +171,9 @@ public class Factory {
         if (matcher1.matches()) {
             factor = parseFactor(matcher1);
         } else {
-            //System.out.println(new String(charExpr));
-            //System.out.println("8");            //TODO
             return null;
         }
         if (factor == null) {
-            //System.out.println("9");            //TODO
             return null;
         }
         triFactor.setSubFactor(factor);
@@ -202,7 +191,6 @@ public class Factory {
         boolean flag = false;
         while (matcher.find()) {
             if (matcher.start() != 0) {
-                //System.out.println("10");            //TODO
                 return null;
             }
             int sign = 1;
@@ -213,7 +201,6 @@ public class Factory {
             String term0 = matcher.group("term");
             Term term = parseTerm(term0);
             if (term == null) {
-                //System.out.println("11");            //TODO
                 return null;
             }
             BigInteger coefficient = term.getCoefficient();
@@ -229,7 +216,6 @@ public class Factory {
             matcher = pattern1.matcher(expr);
         }
         if (!flag) {
-            //System.out.println("12");            //TODO
             return null;
         }
         if (exprFactor.getTermNumber() == 1) {
