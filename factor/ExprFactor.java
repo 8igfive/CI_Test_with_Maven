@@ -38,7 +38,7 @@ public class ExprFactor implements Factor {
     public void addTerm(Term term) {
         if (term.getCoefficient().equals(BigInteger.ONE) && term.getFactorNumber() == 1) {
             for (Factor factor : term.getFactors()) {
-                if (factor instanceof ExprFactor) {
+                if (factor instanceof ExprFactor && factor.getExpo().equals(BigInteger.ONE)) {
                     ExprFactor exprFactor = (ExprFactor) factor;
                     for (Term termTemp : exprFactor.getTerms()) {
                         this.addTerm(termTemp);
@@ -152,6 +152,7 @@ public class ExprFactor implements Factor {
              i.compareTo(this.getExpo()) == -1; i = i.add(BigInteger.ONE)) {
             result = result + "*" + string;
         }
+        result = result.equals(string) ? result : "(" + result + ")";
         return result;
     }
 }
