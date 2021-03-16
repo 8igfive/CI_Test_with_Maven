@@ -23,6 +23,6 @@ mvn_test:
     - echo "Test"
     - mvn cobertura:cobertura
     - mvn cobertura:dump-datafile
-  coverage: '/coverage line-rate="\d+/'
+  coverage: '/coverage line-rate="\d+"/'
   only:
     - se_hw_2
