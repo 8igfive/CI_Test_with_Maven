@@ -21,8 +21,8 @@ mvn_test:
   stage: test
   script:
     - echo "Test"
-    - mvn cobertuna:cobertuna
-    - mvn cobertuna:dump-datafile
+    - mvn cobertura:cobertura
+    - mvn cobertura:dump-datafile
   coverage: '/coverage line-rate="\d+/'
   only:
     - se_hw_2
