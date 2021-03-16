@@ -1,2 +1,0 @@
-[![pipeline status](https://gitlab.buaaoo.top/oo_2019_homeworks/oo_course_2020_18376161_homework_3/badges/se_hw_2/pipeline.svg)](https://gitlab.buaaoo.top/oo_2019_homeworks/oo_course_2020_18376161_homework_3/commits/se_hw_2)
-[![coverage report](https://gitlab.buaaoo.top/oo_2019_homeworks/oo_course_2020_18376161_homework_3/badges/se_hw_2/coverage.svg)](https://gitlab.buaaoo.top/oo_2019_homeworks/oo_course_2020_18376161_homework_3/commits/se_hw_2)
